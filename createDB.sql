@@ -113,9 +113,43 @@ alter Table admissions
 add constraint fk_admission_patient
 foreign key (patient_id) references patients(patient_id);
 
+alter Table prescriptions
+add constraint fk_prescription_patient
+foreign key (patient_id) references patients(patient_id);
+
+alter Table appointments
+add constraint fk_appointment_patient
+foreign key (patient_id) references patients(patient_id);
+
 alter Table admissions
 add constraint fk_admission_room
 foreign key (room_id) references rooms(room_id);
+
+ALTER table staff
+add constraint fk_staff_department
+foreign key (department_id) references departments(department_id);
+
+ALTER table doctors
+add constraint fk_doctor_department
+foreign key (department_id) references departments(department_id);
+
+alter table prescriptions
+add constraint fk_prescription_medication
+Foreign Key (medication_id) REFERENCES medications(medication_id);
+
+alter table prescriptions
+add constraint fk_prescription_doctor
+Foreign Key (doctor_id) REFERENCES doctors(doctor_id);
+
+alter table appointments
+add constraint fk_appointment_doctor
+Foreign Key (doctor_id) REFERENCES doctors(doctor_id);
+
+
+
+
+
+
 
 
 
