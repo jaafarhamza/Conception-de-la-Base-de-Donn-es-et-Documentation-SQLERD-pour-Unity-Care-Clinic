@@ -152,8 +152,8 @@ doctors.last_name as doctor_last_name,
 patients.first_name as patient_first_name,
 patients.last_name as patient_last_name
 FROM appointments
-INNER JOIN doctors ON appointments.doctor_id=doctors.doctor_id
-inner join patients on appointments.patient_id=patients.patient_id
+ JOIN doctors ON appointments.doctor_id=doctors.doctor_id
+ join patients on appointments.patient_id=patients.patient_id
 
 --17
 select * from appointments
@@ -179,9 +179,82 @@ FROM patients
 GROUP BY gender
 HAVING COUNT(*)>=3
 
-SELECT * FROM patients
+SELECT * FROm patients
 
 --20
+create view Admissions_activess  as
+SELECT admission_date > CURRENT_DATE, admission_id
+FROM admissions;
+
+SELECT* from addmiss
+
+SELECT *from Admissions_activess
+
+select*from Admissions_actives;
+
+select*from admissions
+
+--bonus1
+SELECT
+patients.first_name as patient_name,
+patients.last_name,
+doctors.first_name,
+doctors.last_name
+FROM admissions
+join patients on admissions.patient_id=patients.patient_id
+join appointments on patients.patient_id=patients.patient_id
+join doctors on appointments.doctor_id=doctors.doctor_id
+
+--bonus2
+SELECT 
+appointments.appointment_date,
+appointments.appointment_time,
+departments.department_name,
+departments.location
+from appointments
+JOIN doctors on appointments.doctor_id=doctors.doctor_id
+JOIN departments on doctors.department_id=departments.department_id
+
+-- bonus3
+SELECT*FROM medications
+
+SELECT*FROM prescriptions
+
+INSERT INTO medications
+(medication_name,dosage) VALUES 
+('Metformin', '500mg'),
+('Amoxicillin', '250mg'),
+('Ibuprofen', '400mg'),
+('Paracetamol', '200mg'),
+ ('Aspirin', '500mg')
+
+ INSERT INTO prescriptions
+ (patient_id,doctor_id,medication_id,prescription_date,dosage_instructions) VALUES
+ (7, 5, 5, '2024-12-11', 'Take one tablet daily after breakfast'),
+ (4, 5, 4, '2024-12-11', 'Take half a tablet in the morning and half in the evening'),
+ (2, 3, 1, '2024-12-11', 'Take two tablets once a day before bed'),
+ (1, 2, 3, '2024-12-11', 'Take one tablet every 6 hours with food'),
+ (3, 4, 2, '2024-12-11', 'Take one tablet every 6 hours with food')
+
+ SELECT
+ medications.medication_id,
+ medications.medication_name,
+ medications.dosage,
+ doctors.doctor_id,
+ doctors.first_name,
+ doctors.last_name
+ FROM prescriptions
+ JOIN medications on prescriptions.medication_id=medications.medication_id
+ JOIN doctors on prescriptions.doctor_id=doctors.doctor_id
+
+
+
+
+
+
+
+
+
 
 
 
